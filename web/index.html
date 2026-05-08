@@ -170,8 +170,34 @@
     .feature-card p {
       color: #5D4037;
     }
-    .screenshots {
-      background: #1a1a1a;
+.screenshots {
+      background: #F5F5DC;
+    }
+    .screenshots-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .screenshot-card {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    .screenshot-card:hover {
+      transform: translateY(-4px);
+    }
+    .screenshot-img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .screenshot-card p {
+      padding: 16px;
+      text-align: center;
+      font-weight: 600;
+      color: #2E7D32;
+      background: #FAFAF5;
     }
     .screenshots-grid {
       display: grid;
@@ -344,15 +370,15 @@
       <p class="section-subtitle">See CraftConnect in action</p>
       <div class="screenshots-grid">
         <div class="screenshot-card">
-          <img src="images/Screenshot 2026-05-06 141307.png" alt="Cart" class="screenshot-img" width="280" height="600">
+          <img src="images/Screenshot 2026-05-06 141307.png" alt="Cart" class="screenshot-img">
           <p>Cart</p>
         </div>
         <div class="screenshot-card">
-          <img src="images/Screenshot 2026-05-06 104201.png" alt="Product Detail" class="screenshot-img" width="280" height="600">
+          <img src="images/Screenshot 2026-05-06 104201.png" alt="Product Detail" class="screenshot-img">
           <p>Product Detail</p>
         </div>
         <div class="screenshot-card">
-          <img src="images/Screenshot 2026-05-06 104109.png" alt="Market" class="screenshot-img" width="280" height="600">
+          <img src="images/Screenshot 2026-05-06 104109.png" alt="Market" class="screenshot-img">
           <p>Market</p>
         </div>
       </div>
