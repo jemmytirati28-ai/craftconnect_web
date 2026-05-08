@@ -64,9 +64,15 @@
       color: #FF9800;
     }
     .hero {
-      padding: 160px 0 100px;
+      padding: 20px 0 100px;
       text-align: center;
       background: linear-gradient(180deg, #FAFAF5 0%, #F5F5DC 100%);
+    }
+    .hero-logo {
+      max-width: 500px;
+      width: 100%;
+      height: auto;
+      margin-bottom: 20px;
     }
     .hero h1 {
       font-size: 56px;
@@ -264,14 +270,10 @@
   </style>
 </head>
 <body>
-  <div style="text-align: center; padding: 100px 0 40px;">
-    <img src="images/LOGO.png" alt="CraftConnect Logo" style="max-width: 400px; height: auto; background: transparent;">
-    <h1 style="font-size: 48px; font-weight: 700; color: #2E7D32; margin-top: 20px;">CraftConnect</h1>
-  </div>
   <header>
     <div class="container">
       <nav>
-        <div class="logo" style="display: none;">CraftConnect</div>
+        <div class="logo"><img src="images/LOGO.png" alt="Logo" style="height: 40px;"></div>
         <ul class="nav-links">
           <li><a href="https://jemmytirati28-ai.github.io/craftconnect_web" target="_blank">GitHub</a></li>
           <li><a href="#features">Features</a></li>
@@ -285,6 +287,7 @@
 
   <section class="hero" id="download">
     <div class="container">
+      <img src="images/LOGO.png" alt="CraftConnect Logo" class="hero-logo">
       <h1>Global Marketplace for <span>Handmade</span><br>Artisan Products</h1>
       <p>Connect artisans to buyers worldwide. Discover unique, authentic crafts from different cultures and support creators beyond Kenya.</p>
       <div class="download-buttons">
