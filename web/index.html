@@ -171,7 +171,7 @@
       color: #5D4037;
     }
     .screenshots {
-      background: #F5F5DC;
+      background: #1a1a1a;
     }
     .screenshots-grid {
       display: grid;
@@ -179,20 +179,22 @@
       gap: 24px;
     }
     .screenshot-card {
-      background: #fff;
+      background: #333;
       border-radius: 16px;
       overflow: hidden;
       box-shadow: 0 4px 12px rgba(46, 125, 50, 0.15);
       transition: transform 0.2s;
+      border: 3px solid #2E7D32;
     }
     .screenshot-card:hover {
       transform: translateY(-4px);
     }
     .screenshot-img {
       aspect-ratio: 9/19.5;
-      object-fit: cover;
+      object-fit: contain;
       width: 100%;
       display: block;
+      background: #333;
     }
     .screenshot-card p {
       padding: 16px;
