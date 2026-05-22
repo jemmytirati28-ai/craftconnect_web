@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <base href="$FLUTTER_BASE_HREF">
+  <base href="/craftconnect_web/">
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="CraftConnect - Global marketplace for handmade artisan products">
@@ -114,6 +114,18 @@
     .download-btn svg {
       width: 24px;
       height: 24px;
+    }
+    .download-btn.disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+    .download-badge {
+      display: block;
+      font-size: 11px;
+      font-weight: 400;
+      opacity: 0.8;
+      margin-top: 2px;
     }
     section {
       padding: 80px 0;
@@ -285,13 +297,16 @@
       <p class="hero-tagline">Global Marketplace for <span>Handmade</span><br>Artisan Products</p>
       <p>Connect artisans to buyers worldwide. Discover unique, authentic crafts from different cultures and support creators beyond Kenya.</p>
       <div class="download-buttons">
-        <a href="#" class="download-btn ios">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.02.4-2.14 1.03-2.99z"/></svg>
-          App Store
+        <a href="javascript:void(0)" id="install-btn" class="download-btn ios">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+          Install App
+          <span class="download-badge">PWA — works on all devices</span>
         </a>
-        <a href="#" class="download-btn android">
+        <!-- Place your APK file at web/apk/craftconnect.apk to enable download -->
+        <a href="#" class="download-btn android disabled">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.895 12.562l2.122-2.122a.94.94 0 000-1.327l-2.122-2.122 3.266 3.266-3.266 3.215zm3.266-3.266l-2.122 2.122a.94.94 0 000 1.327l2.122 2.122-3.266-3.266-2.122-2.305 3.388-3.266zM5.491 15.632l2.122-2.122a.94.94 0 000-1.327L5.491 10.06l2.256 2.256-2.256 3.316z"/></svg>
-          Google Play
+          Download APK
+          <span class="download-badge">Coming soon</span>
         </a>
       </div>
     </div>
@@ -381,5 +396,53 @@
       <p>&copy; 2026 CraftConnect. All rights reserved.</p>
     </div>
   </footer>
+<script>
+  let deferredPrompt = null;
+  const installBtn = document.getElementById('install-btn');
+
+  function isAlreadyInstalled() {
+    return window.matchMedia('(display-mode: standalone)').matches ||
+           window.navigator.standalone === true;
+  }
+
+  function isIOS() {
+    return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  }
+
+  if (isAlreadyInstalled() && installBtn) {
+    installBtn.textContent = 'Installed \u2713';
+    installBtn.classList.add('disabled');
+  }
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+  });
+
+  if (installBtn) {
+    installBtn.addEventListener('click', async () => {
+      if (isAlreadyInstalled()) return;
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        deferredPrompt = null;
+        if (outcome === 'accepted') {
+          installBtn.textContent = 'Installed \u2713';
+          installBtn.classList.add('disabled');
+        }
+      } else if (isIOS()) {
+        alert('Open this page in Safari, tap the Share button, then select "Add to Home Screen".');
+      }
+    });
+  }
+
+  window.addEventListener('appinstalled', () => {
+    deferredPrompt = null;
+    if (installBtn) {
+      installBtn.textContent = 'Installed \u2713';
+      installBtn.classList.add('disabled');
+    }
+  });
+</script>
 </body>
 </html>
