@@ -28,11 +28,12 @@ jobs:
           flutter pub get
           flutter build web --release --base-href "/craftconnect_web/"
 
-      # 4. Copy custom assets (index.html and images)
+      # 4. Copy custom assets (index.html, images, and apk)
       - name: Copy custom assets
         run: |
           cp web/index.html build/web/index.html
           cp -r images build/web/
+          cp -r web/apk build/web/
 
       # 5. Deploy to the gh-pages branch
       - name: Deploy to GitHub Pages
