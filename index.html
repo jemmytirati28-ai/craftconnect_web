@@ -80,18 +80,24 @@
     .hero h1 {
       font-size: 40px;
       font-weight: 700;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
       line-height: 1.1;
       color: #6D4C41;
     }
     .hero-tagline {
-      font-size: 24px;
+      font-size: 26px;
       color: #5D4037;
       max-width: 600px;
-      margin: 0 auto 40px;
+      margin: 0 auto 24px;
     }
     .hero-tagline span {
       color: #FF9800;
+    }
+    .hero p {
+      font-size: 19px;
+      color: #5D4037;
+      max-width: 600px;
+      margin: 0 auto 24px;
     }
     .download-buttons {
       display: flex;
@@ -112,10 +118,6 @@
       transform: translateY(-2px);
       box-shadow: 0 8px 24px rgba(0,0,0,0.15);
     }
-    .download-btn.ios {
-      background: #6D4C41;
-      color: #fff;
-    }
     .download-btn.android {
       background: #FF9800;
       color: #fff;
@@ -123,18 +125,6 @@
     .download-btn svg {
       width: 24px;
       height: 24px;
-    }
-    .download-btn.disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      pointer-events: none;
-    }
-    .download-badge {
-      display: block;
-      font-size: 11px;
-      font-weight: 400;
-      opacity: 0.8;
-      margin-top: 2px;
     }
     section {
       padding: 80px 0;
@@ -157,7 +147,7 @@
     }
     .section-title {
       text-align: center;
-      font-size: 38px;
+      font-size: 42px;
       font-weight: 700;
       margin-bottom: 16px;
       color: #6D4C41;
@@ -165,7 +155,7 @@
     .section-subtitle {
       text-align: center;
       color: #5D4037;
-      font-size: 20px;
+      font-size: 22px;
       margin-bottom: 40px;
     }
     .features-grid {
@@ -185,23 +175,24 @@
       border-color: #FF9800;
     }
     .feature-icon {
-      width: 48px;
-      height: 48px;
+      width: 56px;
+      height: 56px;
       background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 20px;
-      font-size: 24px;
+      font-size: 32px;
     }
     .feature-card h3 {
-      font-size: 20px;
+      font-size: 24px;
       font-weight: 600;
       margin-bottom: 12px;
       color: #6D4C41;
     }
     .feature-card p {
+      font-size: 18px;
       color: #5D4037;
     }
     .screenshots {
@@ -233,6 +224,7 @@
     .screenshot-card p {
       padding: 16px;
       text-align: center;
+      font-size: 18px;
       font-weight: 600;
       color: #6D4C41;
       background: #FAFAF5;
@@ -251,6 +243,7 @@
     .contact-content p {
       color: #5D4037;
       margin-bottom: 32px;
+      font-size: 18px;
     }
     .contact-links {
       display: flex;
@@ -328,15 +321,9 @@
         <p>Connect artisans to buyers worldwide. Discover unique, authentic crafts from different cultures and support creators beyond Kenya.</p>
       </div>
       <div class="download-buttons">
-        <a href="javascript:void(0)" id="install-btn" class="download-btn ios">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-          Install App
-          <span class="download-badge">PWA — works on all devices</span>
-        </a>
         <a href="apk/craftconnect.apk" download class="download-btn android">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.895 12.562l2.122-2.122a.94.94 0 000-1.327l-2.122-2.122 3.266 3.266-3.266 3.215zm3.266-3.266l-2.122 2.122a.94.94 0 000 1.327l2.122 2.122-3.266-3.266-2.122-2.305 3.388-3.266zM5.491 15.632l2.122-2.122a.94.94 0 000-1.327L5.491 10.06l2.256 2.256-2.256 3.316z"/></svg>
           Download APK
-          <span class="download-badge">Android APK</span>
         </a>
       </div>
     </div>
@@ -440,53 +427,5 @@
       <p>&copy; 2026 CraftConnect. All rights reserved.</p>
     </div>
   </footer>
-<script>
-  let deferredPrompt = null;
-  const installBtn = document.getElementById('install-btn');
-
-  function isAlreadyInstalled() {
-    return window.matchMedia('(display-mode: standalone)').matches ||
-           window.navigator.standalone === true;
-  }
-
-  function isIOS() {
-    return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-  }
-
-  if (isAlreadyInstalled() && installBtn) {
-    installBtn.textContent = 'Installed \u2713';
-    installBtn.classList.add('disabled');
-  }
-
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-  });
-
-  if (installBtn) {
-    installBtn.addEventListener('click', async () => {
-      if (isAlreadyInstalled()) return;
-      if (deferredPrompt) {
-        deferredPrompt.prompt();
-        const { outcome } = await deferredPrompt.userChoice;
-        deferredPrompt = null;
-        if (outcome === 'accepted') {
-          installBtn.textContent = 'Installed \u2713';
-          installBtn.classList.add('disabled');
-        }
-      } else if (isIOS()) {
-        alert('Open this page in Safari, tap the Share button, then select "Add to Home Screen".');
-      }
-    });
-  }
-
-  window.addEventListener('appinstalled', () => {
-    deferredPrompt = null;
-    if (installBtn) {
-      installBtn.textContent = 'Installed \u2713';
-      installBtn.classList.add('disabled');
-    }
-  });
-</script>
 </body>
 </html>
