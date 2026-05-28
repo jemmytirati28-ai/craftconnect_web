@@ -78,14 +78,14 @@
       background-position: center;
     }
     .hero h1 {
-      font-size: 32px;
+      font-size: 40px;
       font-weight: 700;
       margin-bottom: 16px;
       line-height: 1.1;
       color: #6D4C41;
     }
     .hero-tagline {
-      font-size: 20px;
+      font-size: 24px;
       color: #5D4037;
       max-width: 600px;
       margin: 0 auto 40px;
@@ -139,6 +139,16 @@
     section {
       padding: 80px 0;
     }
+    .content-card {
+      background: rgba(255, 255, 255, 0.88);
+      border-radius: 16px;
+      padding: 40px;
+      margin-bottom: 40px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
     .features {
       background-image: linear-gradient(rgba(255,255,255,0.10), rgba(255,255,255,0.10)), url('images/bg-2.jpg');
       background-size: cover;
@@ -147,7 +157,7 @@
     }
     .section-title {
       text-align: center;
-      font-size: 36px;
+      font-size: 38px;
       font-weight: 700;
       margin-bottom: 16px;
       color: #6D4C41;
@@ -155,8 +165,8 @@
     .section-subtitle {
       text-align: center;
       color: #5D4037;
-      font-size: 18px;
-      margin-bottom: 60px;
+      font-size: 20px;
+      margin-bottom: 40px;
     }
     .features-grid {
       display: grid;
@@ -312,9 +322,11 @@
   <section class="hero" id="download">
     <div class="container">
       <img src="images/LOGO.png" alt="CraftConnect Logo" style="max-width: 400px; width: 100%; height: auto; margin-bottom: 16px;">
-      <h1>CraftConnect</h1>
-      <p class="hero-tagline">Global Marketplace for <span>Handmade</span><br>Artisan Products</p>
-      <p>Connect artisans to buyers worldwide. Discover unique, authentic crafts from different cultures and support creators beyond Kenya.</p>
+      <div class="content-card">
+        <h1>CraftConnect</h1>
+        <p class="hero-tagline">Global Marketplace for <span>Handmade</span><br>Artisan Products</p>
+        <p>Connect artisans to buyers worldwide. Discover unique, authentic crafts from different cultures and support creators beyond Kenya.</p>
+      </div>
       <div class="download-buttons">
         <a href="javascript:void(0)" id="install-btn" class="download-btn ios">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
@@ -332,8 +344,10 @@
 
   <section class="features" id="features">
     <div class="container">
-      <h2 class="section-title">Features</h2>
-      <p class="section-subtitle">Everything you need to buy and sell handmade products</p>
+      <div class="content-card">
+        <h2 class="section-title">Features</h2>
+        <p class="section-subtitle">Everything you need to buy and sell handmade products</p>
+      </div>
       <div class="features-grid">
         <div class="feature-card">
           <div class="feature-icon">🛍️</div>
@@ -371,8 +385,10 @@
 
   <section class="screenshots" id="screenshots">
     <div class="container">
-      <h2 class="section-title">Screenshots</h2>
-      <p class="section-subtitle">See CraftConnect in action</p>
+      <div class="content-card">
+        <h2 class="section-title">Screenshots</h2>
+        <p class="section-subtitle">See CraftConnect in action</p>
+      </div>
       <div class="screenshots-grid">
         <div class="screenshot-card">
           <img src="images/Screenshot 2026-05-22 141047.png" alt="Screenshot 1">
@@ -404,14 +420,16 @@
 
   <section class="contact" id="contact">
     <div class="container">
-      <h2 class="section-title">Get in Touch</h2>
-      <div class="contact-content">
-        <p>Have questions or feedback? We'd love to hear from you!</p>
-        <div class="contact-links">
-          <a href="https://jemmytirati28-ai.github.io/craftconnect_web" target="_blank" class="contact-link">GitHub</a>
-          <a href="mailto:hello@craftconnect.app" class="contact-link">Email</a>
-          <a href="#" class="contact-link">Twitter</a>
-          <a href="#" class="contact-link">Instagram</a>
+      <div class="content-card">
+        <h2 class="section-title">Get in Touch</h2>
+        <div class="contact-content">
+          <p>Have questions or feedback? We'd love to hear from you!</p>
+          <div class="contact-links">
+            <a href="https://jemmytirati28-ai.github.io/craftconnect_web" target="_blank" class="contact-link">GitHub</a>
+            <a href="mailto:hello@craftconnect.app" class="contact-link">Email</a>
+            <a href="#" class="contact-link">Twitter</a>
+            <a href="#" class="contact-link">Instagram</a>
+          </div>
         </div>
       </div>
     </div>
