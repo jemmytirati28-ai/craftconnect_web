@@ -33,7 +33,7 @@ jobs:
         run: |
           cp web/index.html build/web/index.html
           sed -i 's|\$FLUTTER_BASE_HREF|/craftconnect_web/|g' build/web/index.html
-          cp -r images build/web/
+          cp -r assets/images build/web/assets/
           cp -r web/apk build/web/ || true
 
       # 5. Deploy to the gh-pages branch
