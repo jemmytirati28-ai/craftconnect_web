@@ -69,6 +69,66 @@
     .nav-links a:hover {
       color: #FF9800;
     }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+      z-index: 110;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 3px;
+      background: #fff;
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.open span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.open span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: linear-gradient(135deg, #6D4C41 0%, #4E342E 100%);
+      z-index: 105;
+      padding: 100px 32px 32px;
+      transition: right 0.3s ease;
+      box-shadow: -4px 0 16px rgba(0,0,0,0.2);
+    }
+    .mobile-menu.open {
+      display: block;
+      right: 0;
+    }
+    .mobile-menu ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .mobile-menu ul a {
+      color: rgba(255,255,255,0.9);
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .mobile-menu ul a:hover {
+      color: #FF9800;
+    }
     .hero {
       padding: 80px 0 100px;
       text-align: center;
@@ -269,17 +329,83 @@
     footer {
       background: linear-gradient(135deg, #6D4C41 0%, #4E342E 100%);
       color: #fff;
-      padding: 40px 0;
-      text-align: center;
+      padding: 48px 0 0;
     }
-    footer a {
-      color: rgba(255,255,255,0.8);
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+      text-align: left;
+    }
+    .footer-col h4 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: #FF9800;
+    }
+    .footer-col p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.7;
+    }
+    .footer-col ul {
+      list-style: none;
+    }
+    .footer-col ul li {
+      margin-bottom: 10px;
+    }
+    .footer-col ul a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 15px;
+      transition: color 0.2s;
+    }
+    .footer-col ul a:hover {
+      color: #FF9800;
+    }
+    .footer-social {
+      display: flex;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .footer-social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+      transition: background 0.2s;
+    }
+    .footer-social a:hover {
+      background: #FF9800;
+    }
+    .footer-bottom {
+      margin-top: 40px;
+      padding: 20px 0;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      text-align: center;
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+    }
+    .footer-bottom a {
+      color: rgba(255,255,255,0.6);
       text-decoration: none;
     }
-    footer a:hover {
+    .footer-bottom a:hover {
       color: #FF9800;
     }
     @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
       .hero h1 {
         font-size: 36px;
       }
@@ -290,8 +416,12 @@
         flex-direction: column;
         align-items: center;
       }
-      .nav-links {
-        display: none;
+      .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .footer-social {
+        justify-content: center;
       }
     }
   </style>
@@ -300,6 +430,11 @@
   <header>
     <div class="container">
       <nav>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
         <ul class="nav-links">
           <li><a href="https://jemmytirati28-ai.github.io/craftconnect_web" target="_blank">GitHub</a></li>
           <li><a href="#features">Features</a></li>
@@ -309,6 +444,15 @@
         </ul>
         <div class="logo"><img src="assets/images/LOGO.png" alt="Logo" style="height: 40px;"></div>
       </nav>
+      <div class="mobile-menu" id="mobileMenu">
+        <ul>
+          <li><a href="https://jemmytirati28-ai.github.io/craftconnect_web" target="_blank">GitHub</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#screenshots">Screenshots</a></li>
+          <li><a href="#download">Download</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
     </div>
   </header>
 
@@ -422,9 +566,51 @@
     </div>
   </section>
 
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+      });
+    });
+  </script>
   <footer>
     <div class="container">
-      <p>&copy; 2026 CraftConnect. All rights reserved.</p>
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>CraftConnect</h4>
+          <p>Global marketplace connecting artisans with buyers worldwide. Discover unique, authentic handmade crafts from different cultures and support creators everywhere.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#screenshots">Screenshots</a></li>
+            <li><a href="#download">Download</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in Touch</h4>
+          <ul>
+            <li><a href="mailto:hello@craftconnect.app">hello@craftconnect.app</a></li>
+            <li><a href="https://jemmytirati28-ai.github.io/craftconnect_web" target="_blank">GitHub</a></li>
+          </ul>
+          <div class="footer-social">
+            <a href="#" aria-label="Twitter">𝕏</a>
+            <a href="#" aria-label="Instagram">◻</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 CraftConnect. All rights reserved.
+      </div>
     </div>
   </footer>
 </body>
