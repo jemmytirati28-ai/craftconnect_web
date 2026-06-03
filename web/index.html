@@ -50,10 +50,10 @@
       padding: 16px 0;
     }
     .logo {
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
+      margin-right: auto;
+    }
+    .logo img {
+      display: block;
     }
     .nav-links {
       display: flex;
@@ -430,11 +430,7 @@
   <header>
     <div class="container">
       <nav>
-        <button class="hamburger" id="hamburger" aria-label="Menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+        <div class="logo"><img src="assets/images/LOGO.png" alt="Logo" style="height: 40px;"></div>
         <ul class="nav-links">
           <li><a href="https://jemmytirati28-ai.github.io/craftconnect_web" target="_blank">GitHub</a></li>
           <li><a href="#features">Features</a></li>
@@ -442,7 +438,11 @@
           <li><a href="#download">Download</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
-        <div class="logo"><img src="assets/images/LOGO.png" alt="Logo" style="height: 40px;"></div>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </nav>
       <div class="mobile-menu" id="mobileMenu">
         <ul>
